@@ -26,7 +26,8 @@ endif
 
 #TOOLCHAIN_FILENAME := $(TOOLCHAIN_$(OSNAME))
 
-all: #FETCHED ESP8266_RTOS_SDK/components/libesphttpd ESP8266_RTOS_SDK/components/heatshrink bin/esptool.py
+all: crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc
+#all: #FETCHED ESP8266_RTOS_SDK/components/libesphttpd ESP8266_RTOS_SDK/components/heatshrink bin/esptool.py
 
 .PHONY: check-and-reinit-submodules
 check-and-reinit-submodules:
@@ -35,6 +36,10 @@ check-and-reinit-submodules:
 		git submodule update --init --recursive; \
 	fi
 
+crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc:
+	(cd crosstool-NG && ./bootstrap && ./configure --enable-local && make)
+	(cd crosstool-NG && ./ct-ng xtensa-esp32-elf && ./ct-ng build)
+	(cd crosstool-NG && chmod -R u+w builds/xtensa-esp32-elf)
 
 #$(TOOLCHAIN_FILENAME):
 #	wget -c $(TOOLCHAIN_BASE)$(TOOLCHAIN_FILENAME)
