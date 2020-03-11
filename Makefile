@@ -26,7 +26,7 @@ endif
 
 #TOOLCHAIN_FILENAME := $(TOOLCHAIN_$(OSNAME))
 
-all: crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc
+all: check-and-reinit-submodules crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc
 #all: #FETCHED ESP8266_RTOS_SDK/components/libesphttpd ESP8266_RTOS_SDK/components/heatshrink bin/esptool.py
 
 .PHONY: check-and-reinit-submodules
