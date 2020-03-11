@@ -26,7 +26,9 @@ endif
 
 #TOOLCHAIN_FILENAME := $(TOOLCHAIN_$(OSNAME))
 
-all: check-and-reinit-submodules crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc
+IDF := esp-idf
+
+all: check-and-reinit-submodules crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc $(IDF)/components/esp32-camera
 #all: #FETCHED ESP8266_RTOS_SDK/components/libesphttpd ESP8266_RTOS_SDK/components/heatshrink bin/esptool.py
 
 .PHONY: check-and-reinit-submodules
@@ -48,11 +50,15 @@ crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc:
 #	tar -xzf $(TOOLCHAIN_FILENAME)
 #	touch xtensa-lx106-elf/.FETCHED
 
-ESP8266_RTOS_SDK/components/libesphttpd: components/libesphttpd
+$(IDF)/components/libesphttpd: components/libesphttpd
 	ln -s ../../components/libesphttpd ESP8266_RTOS_SDK/components/libesphttpd
 
-ESP8266_RTOS_SDK/components/heatshrink: components/heatshrink
+$(IDF)/components/heatshrink: components/heatshrink
 	ln -s ../../components/heatshrink ESP8266_RTOS_SDK/components/heatshrink
+
+$(IDF)/components/esp32-camera: components/esp32-camera
+	ln -s ../../components/esp32-camera $(IDF)/components/esp32-camera
+
 
 bin/esptool.py: bin esptool/esptool.py
 	cp esptool/esptool.py bin/
