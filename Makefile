@@ -29,7 +29,8 @@ endif
 IDF := esp-idf
 
 all: check-and-reinit-submodules crosstool-NG/builds/xtensa-esp32-elf/bin/xtensa-esp32-elf-cc \
-       	$(IDF)/components/libesphttpd
+	$(IDF)/components/heatshrink  \
+       #	$(IDF)/components/libesphttpd \
        #	$(IDF)/components/esp32-camera
 #all: #FETCHED ESP8266_RTOS_SDK/components/libesphttpd ESP8266_RTOS_SDK/components/heatshrink bin/esptool.py
 

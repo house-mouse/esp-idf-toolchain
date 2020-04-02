@@ -10,3 +10,6 @@
 [submodule "components/libesphttpd"]
 	path = components/libesphttpd
 	url = https://github.com/chmorgan/libesphttpd.git
+[submodule "components/heatshrink"]
+	path = components/heatshrink
+	url = https://github.com/house-mouse/heatshrink
